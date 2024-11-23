@@ -89,5 +89,7 @@ const game = (function() {
     return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
 })();
 
-alert("Welcome to Tic Tac Toe!");
-//game.promptPlayer();
+const screen = (function() {
+    const turnDiv = document.querySelector('.turn');
+    const boardDiv = document.querySelector('.board');
+})();
