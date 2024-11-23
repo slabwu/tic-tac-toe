@@ -151,7 +151,9 @@ const screen = (function() {
 
     const clickHandler = (e) => {
         const selectedCell = e.target.index;
-        if (!selectedCell && selectedCell !== 0 || game.getGameState() === "win") return;
+        if (!selectedCell && selectedCell !== 0 || 
+            game.getGameState() === "win" ||
+            !(e.target.textContent === "")) return;
         game.playRound(selectedCell);
         updateScreen();
     }
