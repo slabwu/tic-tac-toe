@@ -41,8 +41,8 @@ const board = (function () {
 
 const game = (function() {
     const players = [
-        { name: "Player One", mark: "❌" },
-        { name: "Player Two", mark: "⭕" },
+        { name: "X", mark: "❌" },
+        { name: "O", mark: "⭕" },
     ];
 
     let currentPlayer = players[0];
@@ -67,13 +67,6 @@ const game = (function() {
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
         board.printBoard();
-        if (checkWin()) {
-            changePlayer();
-            alert(`${getCurrentPlayer().name} wins!`);
-        }
-        if (board.getMoves() === 9) {
-            alert("It's a tie!");
-        }
     }
 
     const checkWin = () => {
@@ -92,7 +85,7 @@ const game = (function() {
     }
 
 
-    return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, checkWin };
 })();
 
 const screen = (function() {
@@ -103,7 +96,16 @@ const screen = (function() {
         boardDiv.textContent = "";
         const boardState = board.getBoard();
         const activePlayer = game.getCurrentPlayer();
-        turnDiv.textContent = `${activePlayer.name}'s turn...`;
+
+        if (game.checkWin()) {
+            game.changePlayer();
+            activePlayer = game.getCurrentPlayer();
+            turnDiv.textContent = `${activePlayer.name} wins!`;
+        } else if (board.getMoves() === 9) {
+            turnDiv.textContent = `It's a tie!`;
+        } else {
+            turnDiv.textContent = `${activePlayer.name}'s turn...`;
+        }
 
         boardState.forEach((row, rowIndex) => {
             row.forEach((cell, columnIndex) => {
