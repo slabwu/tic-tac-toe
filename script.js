@@ -53,7 +53,7 @@ const game = (function() {
             playRound(answer);
         } else {
             alert("This move is invalid!");
-            //promptPlayer();
+            promptPlayer();
         }
     }
 
@@ -62,8 +62,12 @@ const game = (function() {
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
         board.printBoard();
-        console.log(checkWin());
-        //promptPlayer();
+        if (!checkWin()) {
+            promptPlayer();
+        } else {
+            changePlayer();
+            alert(`${getCurrentPlayer().name} wins!`);
+        }
     }
 
     const checkWin = () => {
@@ -86,4 +90,4 @@ const game = (function() {
 })();
 
 alert("Welcome to Tic Tac Toe!");
-//game.promptPlayer();
+game.promptPlayer();
