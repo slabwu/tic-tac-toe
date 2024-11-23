@@ -16,7 +16,6 @@ const board = (function () {
         let row = Math.floor(square/columns);
         let column = square % columns;
         if (!values[row][column]) values[row][column] = player;
-        board.printBoard();
     }
 
     const printBoard = () => {
@@ -50,12 +49,15 @@ const game = (function() {
 
     const printNewRound = () => {
         board.printBoard();
-        console.log(`${game.getCurrentPlayer().name}'s turn`);
+        console.log(`${getCurrentPlayer().name}'s turn`);
     }
 
     const playRound = (square) => {
-        //board.playMove(square,)
+        console.log('Playing move...')
+        board.playMove(square, getCurrentPlayer().mark);
+        changePlayer();
+        printNewRound();
     }
 
-    return { changePlayer, getCurrentPlayer, printNewRound };
+    return { changePlayer, getCurrentPlayer, printNewRound, playRound };
 })();
