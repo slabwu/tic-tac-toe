@@ -63,7 +63,7 @@ const game = (function() {
         changePlayer();
         board.printBoard();
         if (!checkWin()) {
-            promptPlayer();
+            //promptPlayer();
         } else {
             changePlayer();
             alert(`${getCurrentPlayer().name} wins!`);
@@ -92,4 +92,25 @@ const game = (function() {
 const screen = (function() {
     const turnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.board');
+
+    const updateScreen = () => {
+        boardDiv.textContent = "";
+        const boardState = board.getBoard();
+        const activePlayer = game.getCurrentPlayer();
+        turnDiv.textContent = `${activePlayer.name}'s turn...`;
+
+        boardState.forEach(row => {
+            row.forEach((cell, index) => {
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+                cellButton.index = index;
+                cellButton.textContent = cell;
+                boardDiv.appendChild(cellButton);
+            })
+        })
+    }
+
+    updateScreen();
 })();
+
+screen.updateScreen();
