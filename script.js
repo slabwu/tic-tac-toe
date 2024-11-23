@@ -13,6 +13,8 @@ const board = (function () {
 
     const getBoard = () => values;
 
+    const getMoves = () => moves;
+
     const playMove = (square,player) => {
         let row = Math.floor(square/columns);
         let column = square % columns;
@@ -34,7 +36,7 @@ const board = (function () {
         console.log(string);
     };
 
-    return { getBoard, playMove, printBoard, moves };
+    return { getBoard, playMove, printBoard, getMoves };
 })();
 
 const game = (function() {
@@ -44,7 +46,6 @@ const game = (function() {
     ];
 
     let currentPlayer = players[0];
-    let moves = 0;
 
     const changePlayer = () => {
         currentPlayer = (currentPlayer === players[0])? players[1]: players[0];
@@ -63,7 +64,6 @@ const game = (function() {
     }
 
     const playRound = (square) => {
-        console.log('Playing move...')
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
         board.printBoard();
@@ -71,7 +71,7 @@ const game = (function() {
             changePlayer();
             alert(`${getCurrentPlayer().name} wins!`);
         }
-        if (board.moves === 9) {
+        if (board.getMoves() === 9) {
             alert("It's a tie!");
         }
     }
