@@ -90,4 +90,4 @@ const game = (function() {
 })();
 
 alert("Welcome to Tic Tac Toe!");
-game.promptPlayer();
+//game.promptPlayer();
