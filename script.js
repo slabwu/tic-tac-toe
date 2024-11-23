@@ -41,8 +41,8 @@ const board = (function () {
 
 const game = (function() {
     const players = [
-        { name: "Player One", mark: "X" },
-        { name: "Player Two", mark: "O" },
+        { name: "Player One", mark: "❌" },
+        { name: "Player Two", mark: "⭕" },
     ];
 
     let currentPlayer = players[0];

@@ -2,12 +2,14 @@
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
-    height: 300px;
-    width: 300px;
     gap: 15px;
+    width: 345px;
 }
 
 .cell {
     border: none;
     border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    font-size: 40px;
 }
