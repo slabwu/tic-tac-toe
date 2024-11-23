@@ -47,17 +47,20 @@ const game = (function() {
 
     const getCurrentPlayer = () => currentPlayer;
 
-    const printNewRound = () => {
-        board.printBoard();
-        console.log(`${getCurrentPlayer().name}'s turn`);
+    const promptPlayer = () => {
+        answer = prompt(`${getCurrentPlayer().name}'s turn`);
+        playRound(answer);
     }
 
     const playRound = (square) => {
         console.log('Playing move...')
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
-        printNewRound();
+        board.printBoard();
+        promptPlayer();
     }
 
-    return { changePlayer, getCurrentPlayer, printNewRound, playRound };
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
 })();
+
+game.promptPlayer();
