@@ -48,5 +48,10 @@ const game = (function() {
 
     const getCurrentPLayer = () => currentPlayer;
 
-    return { changePlayer, getCurrentPLayer };
+    const printNewRound = () => {
+        board.printBoard();
+        console.log(`${currentPlayer.name}'s turn`);
+    }
+
+    return { changePlayer, getCurrentPLayer, printNewRound };
 })();
