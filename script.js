@@ -95,7 +95,7 @@ const screen = (function() {
     const updateScreen = () => {
         boardDiv.textContent = "";
         const boardState = board.getBoard();
-        const activePlayer = game.getCurrentPlayer();
+        let activePlayer = game.getCurrentPlayer();
 
         if (game.checkWin()) {
             game.changePlayer();
