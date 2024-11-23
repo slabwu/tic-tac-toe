@@ -29,6 +29,17 @@ body {
     font-size: 40px;
 }
 
+.cell:hover {
+    animation-name: change;
+    animation-duration: .1s;
+    transform: scale(1.1);
+}
+
+@keyframes change {
+    from {transform: scale(1.00);}
+    to {transform: scale(1.1);}
+  }
+
 .turn {
     text-align: center;
     font-family: Verdana;
