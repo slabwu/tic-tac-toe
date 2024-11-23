@@ -6,7 +6,7 @@ const board = (function () {
     for (let i = 0; i < rows; i++) {
         values[i] = [];
         for (let j = 0; j < columns; j++) {
-            values[i].push("_");
+            values[i].push("");
         }
     }
 
@@ -15,7 +15,7 @@ const board = (function () {
     const playMove = (square,player) => {
         let row = Math.floor(square/columns);
         let column = square % columns;
-        if (values[row][column] === "_") values[row][column] = player;
+        if (!values[row][column]) values[row][column] = player;
         board.printBoard();
     }
 
@@ -23,7 +23,8 @@ const board = (function () {
         let string = "";
         for (let i = 0; i < rows; i++) {
             for (let j = 0; j < columns; j++) {
-                string += values[i][j] + " ";
+                cell = values[i][j] || "_";
+                string += cell + " ";
                 if (j === 2) string += "\n";
             }
         }
