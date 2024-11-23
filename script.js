@@ -46,12 +46,16 @@ const game = (function() {
         currentPlayer = (currentPlayer === players[0])? players[1]: players[0];
     };
 
-    const getCurrentPLayer = () => currentPlayer;
+    const getCurrentPlayer = () => currentPlayer;
 
     const printNewRound = () => {
         board.printBoard();
-        console.log(`${currentPlayer.name}'s turn`);
+        console.log(`${game.getCurrentPlayer().name}'s turn`);
     }
 
-    return { changePlayer, getCurrentPLayer, printNewRound };
+    const playRound = (square) => {
+        //board.playMove(square,)
+    }
+
+    return { changePlayer, getCurrentPlayer, printNewRound };
 })();
