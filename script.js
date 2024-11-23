@@ -79,7 +79,7 @@ const game = (function() {
     const checkWin = () => {
         let b = board.getBoard();
         if (b[1][1] && b[0][0] === b[1][1] && b[1][1] === b[2][2] || 
-            b[1][1] && b[0][0] === b[1][1] && b[1][1] === b[2][2]) {
+            b[1][1] && b[0][2] === b[1][1] && b[1][1] === b[2][0]) {
                 return true;
             }
         for (let i = 0; i < 3; i ++) {
