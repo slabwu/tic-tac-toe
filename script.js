@@ -12,8 +12,8 @@ const board = (function () {
     }
 
     const getBoard = () => values;
-
     const getMoves = () => moves;
+    const resetMoves = () => moves = 0;
 
     const playMove = (square,player) => {
         let row = Math.floor(square/columns);
@@ -21,6 +21,15 @@ const board = (function () {
         if (!values[row][column]) {
             values[row][column] = player;
             moves++;
+        }
+    }
+
+    const clearBoard = () => {
+        for (let i = 0; i < 3; i++) {
+            values[i] = [];
+            for (let j = 0; j < 3; j++) {
+                values[i][j] = "";
+            }
         }
     }
 
@@ -36,7 +45,7 @@ const board = (function () {
         console.log(string);
     };
 
-    return { getBoard, playMove, printBoard, getMoves };
+    return { getBoard, playMove, printBoard, getMoves, resetMoves, clearBoard };
 })();
 
 const game = (function() {
@@ -95,25 +104,38 @@ const game = (function() {
         return false;
     }
 
+    const restartGame = () => {
+        board.clearBoard();
+        board.resetMoves();
+        game.changePlayer();
+        gameState = 'active'
+        screen.updateScreen();
+    }
 
-    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, getGameState };
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, getGameState, restartGame };
 })();
 
 const screen = (function() {
     const turnDiv = document.querySelector('.turn');
     const boardDiv = document.querySelector('.board');
+    const againButton = document.querySelector('.again');
+    againButton.style.display = "none";
 
     const updateScreen = () => {
         boardDiv.textContent = "";
         const boardState = board.getBoard();
+        const winState = game.getGameState();
         let activePlayer = game.getCurrentPlayer();
 
-        if (game.getGameState() === 'win') {
+        if (winState === 'win') {
             turnDiv.textContent = `${activePlayer.name} wins!`;
-        } else if (game.getGameState() === 'tie') {
+            againButton.style.display = "block";
+        } else if (winState === 'tie') {
             turnDiv.textContent = `It's a tie!`;
+            againButton.style.display = "block";
         } else {
             turnDiv.textContent = `${activePlayer.name}'s turn...`;
+            againButton.style.display = "none";
         }
 
         boardState.forEach((row, rowIndex) => {
@@ -135,6 +157,7 @@ const screen = (function() {
     }
 
     boardDiv.addEventListener("click", clickHandler);
+    againButton.addEventListener("click", game.restartGame);
     updateScreen();
 
     return { updateScreen }
