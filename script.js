@@ -62,11 +62,28 @@ const game = (function() {
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
         board.printBoard();
-        promptPlayer();
+        console.log(checkWin());
+        //promptPlayer();
     }
 
-    return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
+    const checkWin = () => {
+        let b = board.getBoard();
+        if (b[1][1] && b[0][0] === b[1][1] && b[1][1] === b[2][2] || 
+            b[1][1] && b[0][0] === b[1][1] && b[1][1] === b[2][2]) {
+                return true;
+            }
+        for (let i = 0; i < 3; i ++) {
+            if (b[i][i] && b[i][0] === b[i][1] && b[i][1] === b[i][2] || 
+                b[i][i] && b[0][i] === b[1][i] && b[1][i] === b[2][i]) {
+                return true;
+            }
+        };
+        return false;
+    }
+
+
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, checkWin };
 })();
 
 alert("Welcome to Tic Tac Toe!");
-game.promptPlayer();
+//game.promptPlayer();
