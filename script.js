@@ -99,11 +99,11 @@ const screen = (function() {
         const activePlayer = game.getCurrentPlayer();
         turnDiv.textContent = `${activePlayer.name}'s turn...`;
 
-        boardState.forEach(row => {
-            row.forEach((cell, index) => {
+        boardState.forEach((row, rowIndex) => {
+            row.forEach((cell, columnIndex) => {
                 const cellButton = document.createElement("button");
                 cellButton.classList.add("cell");
-                cellButton.index = index;
+                cellButton.index = columnIndex + rowIndex * 3;
                 cellButton.textContent = cell;
                 boardDiv.appendChild(cellButton);
             })
@@ -112,5 +112,3 @@ const screen = (function() {
 
     updateScreen();
 })();
-
-screen.updateScreen();
