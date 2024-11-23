@@ -110,5 +110,12 @@ const screen = (function() {
         })
     }
 
+    const clickHandler = (e) => {
+        const selectedCell = e.target.index;
+        if (!selectedCell && selectedCell !== 0) return;
+        console.log(selectedCell);
+    }
+
+    boardDiv.addEventListener("click", clickHandler);
     updateScreen();
 })();
