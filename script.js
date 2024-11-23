@@ -129,7 +129,7 @@ const screen = (function() {
 
     const clickHandler = (e) => {
         const selectedCell = e.target.index;
-        if (!selectedCell && selectedCell !== 0) return;
+        if (!selectedCell && selectedCell !== 0 || game.getGameState() === "win") return;
         game.playRound(selectedCell);
         updateScreen();
     }
