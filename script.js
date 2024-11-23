@@ -86,7 +86,7 @@ const game = (function() {
     }
 
 
-    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, checkWin };
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
 })();
 
 alert("Welcome to Tic Tac Toe!");
