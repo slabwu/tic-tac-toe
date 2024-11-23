@@ -27,18 +27,12 @@ body {
     height: 100px;
     width: 100px;
     font-size: 40px;
+    transition: transform 0.3s ease
 }
 
 .cell:hover {
-    animation-name: change;
-    animation-duration: .1s;
     transform: scale(1.1);
 }
-
-@keyframes change {
-    from {transform: scale(1.00);}
-    to {transform: scale(1.1);}
-  }
 
 .turn {
     text-align: center;
@@ -54,11 +48,10 @@ body {
     font-family: Verdana;
     color: white;
     background-color: red;
+    transition: transform 0.3s ease
 }
 
 .again:hover {
-    animation-name: change;
-    animation-duration: .1s;
     transform: scale(1.1);
 }
 
