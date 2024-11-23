@@ -28,8 +28,17 @@ const board = (function () {
                 if (j === 2) string += "\n";
             }
         }
-        console.log(string)
+        console.log(string);
     };
 
     return { getBoard, playMove, printBoard };
+})();
+
+const game = (function() {
+    const players = [
+        { name: "Player One", mark: "X" },
+        { name: "Player Two", mark: "O" },
+    ];
+
+    let currentPlayer = players[0];
 })();
