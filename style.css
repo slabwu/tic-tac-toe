@@ -9,12 +9,13 @@ body {
 }
 
 .container {
-    height: 450px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
 }
 
 .board {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     width: 345px;
@@ -33,11 +34,22 @@ body {
     font-family: Verdana;
 }
 
+.again {
+    margin: 0 80px 0;
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-family: Verdana;
+    color: white;
+    background-color: red;
+}
+
 h1 {
-    margin: -50px 0 50px;
+    margin: 10px 0 50px;
     font-size: 40px;
 }
 
 h2 {
-    margin-top: 30px;
+    margin: 30px 0 30px;
 }
