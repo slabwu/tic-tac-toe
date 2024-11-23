@@ -46,12 +46,14 @@ const game = (function() {
     ];
 
     let currentPlayer = players[0];
+    let gameState = 'active';
 
     const changePlayer = () => {
         currentPlayer = (currentPlayer === players[0])? players[1]: players[0];
     };
 
     const getCurrentPlayer = () => currentPlayer;
+    const getGameState = () => gameState;
 
     const promptPlayer = () => {
         answer = prompt(`${getCurrentPlayer().name}'s turn`);
@@ -67,6 +69,15 @@ const game = (function() {
         board.playMove(square, getCurrentPlayer().mark);
         changePlayer();
         board.printBoard();
+        if (checkWin()) {
+            game.changePlayer();
+            activePlayer = game.getCurrentPlayer();
+            gameState = 'win';
+            screen.updateScreen();
+        } else if (board.getMoves() === 9) {
+            gameState = 'tie'
+            screen.updateScreen();
+        }
     }
 
     const checkWin = () => {
@@ -85,7 +96,7 @@ const game = (function() {
     }
 
 
-    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, checkWin };
+    return { changePlayer, getCurrentPlayer, promptPlayer, playRound, getGameState };
 })();
 
 const screen = (function() {
@@ -97,11 +108,9 @@ const screen = (function() {
         const boardState = board.getBoard();
         let activePlayer = game.getCurrentPlayer();
 
-        if (game.checkWin()) {
-            game.changePlayer();
-            activePlayer = game.getCurrentPlayer();
+        if (game.getGameState() === 'win') {
             turnDiv.textContent = `${activePlayer.name} wins!`;
-        } else if (board.getMoves() === 9) {
+        } else if (game.getGameState() === 'tie') {
             turnDiv.textContent = `It's a tie!`;
         } else {
             turnDiv.textContent = `${activePlayer.name}'s turn...`;
@@ -127,4 +136,6 @@ const screen = (function() {
 
     boardDiv.addEventListener("click", clickHandler);
     updateScreen();
+
+    return { updateScreen }
 })();
