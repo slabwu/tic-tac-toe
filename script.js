@@ -41,4 +41,12 @@ const game = (function() {
     ];
 
     let currentPlayer = players[0];
+
+    const changePlayer = () => {
+        currentPlayer = (currentPlayer === players[0])? players[1]: players[0];
+    };
+
+    const getCurrentPLayer = () => currentPlayer;
+
+    return { changePlayer, getCurrentPLayer };
 })();
