@@ -49,7 +49,12 @@ const game = (function() {
 
     const promptPlayer = () => {
         answer = prompt(`${getCurrentPlayer().name}'s turn`);
-        playRound(answer);
+        if (/[012345678]/.test(answer) && board.getBoard()[Math.floor(answer/3)][answer % 3] === "") {
+            playRound(answer);
+        } else {
+            alert("This move is invalid!");
+            //promptPlayer();
+        }
     }
 
     const playRound = (square) => {
@@ -63,4 +68,5 @@ const game = (function() {
     return { changePlayer, getCurrentPlayer, promptPlayer, playRound };
 })();
 
+alert("Welcome to Tic Tac Toe!");
 game.promptPlayer();
